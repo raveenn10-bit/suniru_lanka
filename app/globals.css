@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-dark: #17130f;
+  --color-deep: #110e0b;
+  --color-surface: #1e1914;
+  --color-cream: #fbf8f2;
+  --color-cream-soft: #f4f0e7;
+  --color-gold: #c6a66a;
+  --color-gold-light: #d6b77a;
+  --color-gold-pale: #e8d3a7;
+  --color-muted: #7b7469;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-deep);
+  color: var(--color-cream);
+  font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: var(--color-gold);
+  selection-color: var(--color-deep);
+}
+
+::selection {
+  background-color: #c6a66a;
+  color: #110e0b;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #110e0b;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2219;
+  border-radius: 4px;
+  border: 1px solid rgba(198, 166, 106, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c6a66a;
+}
+
+/* Luxury Background Noise Texture Overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Gold Gradient Shimmer Text */
+.gold-shimmer {
+  background: linear-gradient(135deg, #fbf8f2 0%, #d6b77a 40%, #c6a66a 70%, #f4f0e7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #c6a66a 0%, #e8d3a7 50%, #9e7f44 100%);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 25px rgba(198, 166, 106, 0.15);
+}
+
+/* Glassmorphism card */
+.glass-panel {
+  background: rgba(30, 25, 20, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(198, 166, 106, 0.2);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(38, 31, 24, 0.85);
+  border-color: rgba(198, 166, 106, 0.45);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), 0 0 24px rgba(198, 166, 106, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Orbital Rings */
+@keyframes spinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinCounterClockwise {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-orbit-cw {
+  animation: spinClockwise 40s linear infinite;
+}
+
+.animate-orbit-ccw {
+  animation: spinCounterClockwise 55s linear infinite;
+}
+
+/* Marquee continuous scroll */
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  animation: marqueeLeft 30s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Blinking Cursor for Typewriter */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  background-color: #c6a66a;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 0.9s infinite;
+}
