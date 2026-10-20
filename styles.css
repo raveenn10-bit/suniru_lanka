@@ -1507,9 +1507,10 @@ a {
 .footer-wordmark {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 0.28em;
   position: relative;
-  font: 400 clamp(70px, 12.7vw, 210px) / 1.05 var(--serif);
+  font: 400 clamp(68px, 12vw, 195px) / 1.05 var(--serif);
   letter-spacing: -0.055em;
   white-space: nowrap;
   padding: 35px 0 50px;
@@ -2007,20 +2008,22 @@ a {
     bottom: 0;
   }
   .footer-wordmark {
-    display: block;
-    white-space: normal;
-    font-size: 20vw;
-    line-height: 0.95;
-    padding: 35px 0;
-    letter-spacing: -0.05em;
-  }
-  .footer-wordmark span {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.22em;
+    font-size: clamp(38px, 12vw, 76px);
+    line-height: 1;
+    padding: 30px 0;
+    letter-spacing: -0.04em;
     text-align: left;
   }
+  .footer-wordmark span,
   .footer-wordmark em {
-    display: block;
-    text-align: right;
+    display: inline-flex;
+    align-items: baseline;
+    text-align: left;
   }
   .footer-info {
     grid-template-columns: 1fr;
@@ -2033,6 +2036,23 @@ a {
   .signature-footer .footer-bottom > * {
     display: block;
     margin-top: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-wordmark {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.22em;
+    text-align: left;
+  }
+  .footer-wordmark span,
+  .footer-wordmark em {
+    display: inline-flex;
+    align-items: baseline;
+    text-align: left;
   }
 }
 
