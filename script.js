@@ -103,36 +103,90 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }
 }
 
-// Interactive Golden Kinetic Cursor Parallax for SUNIRU LANKA Wordmark
-const footerWordmark = document.querySelector('.footer-wordmark');
-if (footerWordmark && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const span = footerWordmark.querySelector('span');
-  const em = footerWordmark.querySelector('em');
+// Typewriter Animation for SUNIRU LANKA Wordmark
+function initWordmarkTypewriter() {
+  const footerWordmark = document.querySelector('.footer-wordmark');
+  if (!footerWordmark) return;
 
-  footerWordmark.addEventListener('mousemove', (e) => {
-    const rect = footerWordmark.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
+  const suniruEl = footerWordmark.querySelector('span');
+  const lankaEl = footerWordmark.querySelector('em');
+  if (!suniruEl || !lankaEl) return;
 
-    if (span) {
-      span.style.transform = `translate(${x * 20}px, ${y * 14 - 6}px) scale(1.02)`;
-      span.style.filter = `drop-shadow(${x * -10}px 8px 30px rgba(244, 208, 132, 0.8))`;
+  const suniruText = 'SUNIRU';
+  const lankaText = 'LANKA';
+
+  // Create typing cursor element
+  const cursor = document.createElement('span');
+  cursor.className = 'type-cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+
+  let isTyping = false;
+  let hasTyped = false;
+
+  function typeText() {
+    if (isTyping) return;
+    isTyping = true;
+
+    // Clear content and append cursor to span
+    suniruEl.textContent = '';
+    lankaEl.textContent = '';
+    suniruEl.appendChild(cursor);
+
+    let suniruIndex = 0;
+    let lankaIndex = 0;
+
+    function typeSuniru() {
+      if (suniruIndex < suniruText.length) {
+        suniruEl.textContent = suniruText.slice(0, suniruIndex + 1);
+        suniruEl.appendChild(cursor);
+        suniruIndex++;
+        setTimeout(typeSuniru, 120 + Math.random() * 40);
+      } else {
+        setTimeout(() => {
+          lankaEl.appendChild(cursor);
+          setTimeout(typeLanka, 180);
+        }, 150);
+      }
     }
-    if (em) {
-      em.style.transform = `translate(${x * -20}px, ${y * -14 - 6}px) scale(1.02)`;
-      em.style.filter = `drop-shadow(${x * 10}px 8px 30px rgba(244, 208, 132, 0.8))`;
+
+    function typeLanka() {
+      if (lankaIndex < lankaText.length) {
+        lankaEl.textContent = lankaText.slice(0, lankaIndex + 1);
+        lankaEl.appendChild(cursor);
+        lankaIndex++;
+        setTimeout(typeLanka, 130 + Math.random() * 40);
+      } else {
+        isTyping = false;
+        hasTyped = true;
+      }
+    }
+
+    typeSuniru();
+  }
+
+  // Trigger when footer wordmark is in view
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasTyped) {
+          typeText();
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(footerWordmark);
+  } else {
+    typeText();
+  }
+
+  // Replay typing animation on click
+  footerWordmark.addEventListener('click', () => {
+    if (!isTyping) {
+      typeText();
     }
   });
+}
 
-  footerWordmark.addEventListener('mouseleave', () => {
-    if (span) {
-      span.style.transform = '';
-      span.style.filter = '';
-    }
-    if (em) {
-      em.style.transform = '';
-      em.style.filter = '';
-    }
-  });
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  initWordmarkTypewriter();
 }
 

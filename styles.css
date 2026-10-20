@@ -1503,7 +1503,7 @@ a {
   }
 }
 
-/* Shimmering Golden Gradient & Kinetic Floating Animation for SUNIRU LANKA Wordmark */
+/* Footer Wordmark with Typing Animation */
 .footer-wordmark {
   display: flex;
   align-items: baseline;
@@ -1514,98 +1514,56 @@ a {
   white-space: nowrap;
   padding: 35px 0 50px;
   border-bottom: 1px solid rgba(198, 166, 106, 0.25);
+  color: #eee6d6;
   user-select: none;
   cursor: pointer;
-  perspective: 1000px;
   overflow: visible;
 }
 
 .footer-wordmark span,
 .footer-wordmark em {
-  display: inline-block;
-  background: linear-gradient(
-    115deg,
-    #cfb175 0%,
-    #f8e5b9 22%,
-    #ffffff 42%,
-    #f4d084 62%,
-    #cfb175 80%,
-    #ffffff 92%,
-    #dfb664 100%
-  );
-  background-size: 260% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), letter-spacing 0.5s ease, filter 0.5s ease;
-  filter: drop-shadow(0 4px 18px rgba(214, 183, 122, 0.35));
-  will-change: transform, filter, background-position;
+  display: inline-flex;
+  align-items: baseline;
+  color: inherit;
+  transition: letter-spacing 0.4s ease, filter 0.4s ease;
 }
 
 .footer-wordmark span {
-  animation: 
-    wordFloatSuniru 5.5s ease-in-out infinite alternate,
-    goldGleam 4.2s ease-in-out infinite alternate;
+  color: #eee6d6;
 }
 
 .footer-wordmark em {
   font-weight: 400;
   font-style: italic;
-  animation: 
-    wordFloatLanka 5.5s ease-in-out infinite alternate 1s,
-    goldGleam 4.2s ease-in-out infinite alternate 2.1s;
+  color: #c6a66a;
 }
 
-@keyframes wordFloatSuniru {
-  0% {
-    transform: translateY(0px) rotate(0deg);
+/* Typewriter Blinking Gold Caret */
+.type-cursor {
+  display: inline-block;
+  width: 0.08em;
+  min-width: 4px;
+  height: 0.78em;
+  margin-left: 0.06em;
+  background: #c6a66a;
+  vertical-align: baseline;
+  box-shadow: 0 0 16px rgba(198, 166, 106, 0.9);
+  animation: cursorBlink 0.8s steps(2, start) infinite;
+  border-radius: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% {
+    opacity: 1;
   }
   50% {
-    transform: translateY(-9px) rotate(-0.6deg);
-  }
-  100% {
-    transform: translateY(-4px) rotate(0.4deg);
+    opacity: 0;
   }
 }
 
-@keyframes wordFloatLanka {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(0.8deg);
-  }
-  100% {
-    transform: translateY(-3px) rotate(-0.4deg);
-  }
-}
-
-@keyframes goldGleam {
-  0% {
-    background-position: 0% 50%;
-    filter: drop-shadow(0 4px 15px rgba(214, 183, 122, 0.3));
-  }
-  50% {
-    background-position: 100% 50%;
-    filter: drop-shadow(0 8px 30px rgba(244, 208, 132, 0.65));
-  }
-  100% {
-    background-position: 220% 50%;
-    filter: drop-shadow(0 4px 18px rgba(214, 183, 122, 0.35));
-  }
-}
-
-/* Luxury Interactive Hover State */
-.footer-wordmark:hover span {
-  transform: translateY(-12px) scale(1.025);
-  letter-spacing: -0.035em;
-  filter: drop-shadow(0 10px 40px rgba(255, 230, 160, 0.9));
-}
-
+.footer-wordmark:hover span,
 .footer-wordmark:hover em {
-  transform: translateY(-12px) scale(1.025);
-  letter-spacing: -0.035em;
-  filter: drop-shadow(0 10px 40px rgba(255, 230, 160, 0.9));
+  filter: drop-shadow(0 0 25px rgba(214, 183, 122, 0.6));
 }
 
 .footer-info {
